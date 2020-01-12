@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MathCore.ASP</name>
+    </assembly>
+    <members>
+        <member name="T:MathCore.ASP.Constraints.Actions.UserAgentAttribute">
+             <summary>Проверка браузера пользователя</summary>
+             <code>
+             public class HomeController : Controller
+             {
+                 public IActionResult Index() => View();
+            
+                 [ActionName(nameof(Index)), UserAgent("Edge")]
+                 public IActionResult IndexEdge() => View();
+             } 
+             </code>
+        </member>
+        <member name="F:MathCore.ASP.Constraints.Actions.UserAgentAttribute._Name">
+            <summary>Название User-Agent</summary>
+        </member>
+        <member name="P:MathCore.ASP.Constraints.Actions.UserAgentAttribute.Order">
+            <summary>Порядок проверки == 0</summary>
+        </member>
+        <member name="M:MathCore.ASP.Constraints.Actions.UserAgentAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Constraints.Actions.UserAgentAttribute"/></summary>
+            <param name="Name">Название User-Agent</param>
+        </member>
+        <member name="M:MathCore.ASP.Constraints.Actions.UserAgentAttribute.Accept(Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext)">
+            <summary>Определение условий когда действие является корректным</summary>
+            <param name="context">Контекст проверки <see cref="T:Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext" />.</param>
+            <returns><see langword="true"/> - если действие корректно и <see langword="false"/>  - в противном случае.</returns>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.ActionParameters.MustBeInRoute">
+            <summary>Параметр обязан присутствовать в маршруте</summary>
+            <code>
+            public class ParameterModelController : Controller
+            {
+                // Будет привязан:  /ParameterModel/GetById/123
+                // НЕ БУДЕТ привязан!: /ParameterModel/GetById?id=123
+                public string GetById([MustBeInRoute]int id) => $"Привязка к id: {id}";
+            }
+            </code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.ActionParameters.MustBeInRoute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel" /></summary>
+            <param name="model">Модель параметра действия контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute">
+             <summary>Добавление описания действию</summary>
+             <code>
+             [ControllerDescription("Controller Description")]
+             public class DescriptionAttributesController : Controller
+             {
+                 public string Index() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+            
+                 [ActionDescription("Action Description")]
+                 public string UseActionDescriptionAttribute() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+             }
+             </code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute._Description">
+            <summary>Добавляемое описание</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute"/></summary>
+            <param name="Description">Добавляемое описание</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></summary>
+            <param name="action">Модель действия контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Actions.AddActionAttribute">
+            <summary>Добавление псевдонима действия контроллера</summary>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Actions.AddActionAttribute._Name">
+            <summary>Имя псевдонима действия</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.AddActionAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Actions.AddActionAttribute"/></summary>
+            <param name="Name">Имя псевдонима действия</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.AddActionAttribute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></summary>
+            <param name="action">Модель действия контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Application.ApplicationDescription">
+            <summary>Добавление описания к приложению</summary>
+            <code>
+            services.AddMvc(opt =&gt; options.Conventions.Add(new ApplicationDescription("App description")));
+            ...
+            public class HomeController : Controller
+            {
+                public string AppDescription() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+            }
+            </code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Application.ApplicationDescription._Description">
+            <summary>Добавляемое описание</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.ApplicationDescription.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Application.ApplicationDescription"/></summary>
+            <param name="Description">Добавляемое описание</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.ApplicationDescription.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></summary>
+            <param name="application">Модель приложения <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Application.EnableApiExplorer">
+            <summary>Включение отображения информации по WebAPI, представляемого приложением</summary>
+            <code>services.AddMvc(opt =&gt; options.Conventions.Add(new EnableApiExplorer()));</code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.EnableApiExplorer.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></summary>
+            <param name="application">Модель приложения <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Application.NamespaceRouting">
+            <summary>Применение пространств имён в системе маршрутизации приложения</summary>
+            <code>
+            services.AddMvc(opt =&gt; options.Conventions.Add(new NamespaceRouting()));
+            ...
+            namespace AppModelSample.Controllers
+            {
+                public class NamespaceRoutingController : Controller
+                {
+                    // using NamespaceRouting
+                    // route: /AppModelSample/Controllers/NamespaceRouting/Index
+                    public string Index() => "This demonstrates namespace routing.";
+                }
+            }
+            </code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.NamespaceRouting.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></summary>
+            <param name="application">Модель приложения <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Controllers.AddAreasControllerRoute">
+            <summary>Соглашение, добавляющее к контроллеру маршрут с указанием его области исходя из имени пространства имён его класса</summary>
+            <code>services.AddMvc(opt =&gt; options.Conventions.Add(new AddAreasControllerRoute()));</code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.AddAreasControllerRoute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></summary>
+            <param name="controller">Модель контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention">
+            <summary>Соглашение, добавляющее требование авторизации к указанной области</summary>
+            <code>services.AddMvc(opt =&gt; options.Conventions.Add(new AuthorizeAreaConvention("Admin", "AdministratorPolicy")));</code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention._Area">
+            <summary>Область, доступ к которой требует обязательной авторизации</summary>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention._Policy">
+            <summary>Имя политики авторизации, которая налагается на указанную область</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention.#ctor(System.String,System.String)">
+            <summary>Инициализация нового соглашения об авторизации для указанной области</summary>
+            <param name="Area">Область, доступ к которой требует обязательной авторизации</param>
+            <param name="Policy">Имя политики авторизации, которая налагается на указанную область</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></summary>
+            <param name="controller">Модель контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute">
+            <summary>Описание контроллера</summary>
+            <code>
+            [ControllerDescription("Controller Description")]
+            public class DescriptionAttributesController : Controller
+            {
+                public string Index() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+            }
+            </code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute._Description">
+            <summary>Добавляемое описание</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute"/></summary>
+            <param name="Description">Добавляемое описание</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></summary>
+            <param name="controller">Модель контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Filters.Actions.ValidateModelAttribute">
+            <summary>Проверка корректности состояния модели</summary>
+        </member>
+        <member name="P:MathCore.ASP.Filters.Actions.ValidateModelAttribute.RedirectToController">
+            <summary>Перенаправление на контроллер (если не указано, то на текущий)</summary>
+        </member>
+        <member name="P:MathCore.ASP.Filters.Actions.ValidateModelAttribute.RedirectToAction">
+            <summary>Перенаправление на действие контроллера (если не указано, то на текущее)</summary>
+        </member>
+        <member name="P:MathCore.ASP.Filters.Actions.ValidateModelAttribute.RedirectToPage">
+            <summary>Перенаправление на страницу (если не указано, то на текущее действие контроллера)</summary>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Actions.ValidateModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:MathCore.ASP.Filters.Actions.ValidateModelAttribute.ConstructRouteValueDictionary">
+            <summary>Создать словарь с данными маршрута с именами контроллера и его действия, либо с именем страницы</summary>
+            <returns>Словарь с данными маршрута</returns>
+        </member>
+        <member name="T:MathCore.ASP.Filters.Results.AddHeaderAttribute">
+            <summary>Добавление заголовка к ответу</summary>
+        </member>
+        <member name="F:MathCore.ASP.Filters.Results.AddHeaderAttribute._Name">
+            <summary>Имя заголовка</summary>
+        </member>
+        <member name="F:MathCore.ASP.Filters.Results.AddHeaderAttribute._Value">
+            <summary>Значение заголовка</summary>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.AddHeaderAttribute.#ctor(System.String,System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Filters.Results.AddHeaderAttribute"/></summary>
+            <param name="Name">Имя заголовка</param>
+            <param name="Value">Значение заголовка</param>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.AddHeaderAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:MathCore.ASP.Filters.Results.GetExecutionTimeAttribute">
+            <summary>Добавление заголовка со значением полного времени выполнения действия контроллера</summary>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.GetExecutionTimeAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)">
+            <summary>Вызывается до начала выполнения действия контроллера</summary>
+            <param name="context">Контекст запроса <see cref="T:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext" /></param>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.GetExecutionTimeAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)">
+            <summary>Вызывается после получения результата действия</summary>
+            <param name="context">Контекст запроса <see cref="T:Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Middleware.AuthenticationMiddleware">
+            <summary>
+            Промежуточное программное обеспечение, обеспечивающее простейший вид ограничения доступа
+            по средствам проверки имени пользователя и пароля, добавляемых в заголовки запроса
+            </summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware.__FieldLength">
+            <summary>Длина имени заголовка поля авторизации</summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware._Next">
+            <summary>Следующий делегат в конвейере обработчиков входящего запроса</summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware._UserName">
+            <summary>Имя пользователя</summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware._Password">
+            <summary>Пароль</summary>
+        </member>
+        <member name="P:MathCore.ASP.Middleware.AuthenticationMiddleware.UserName">
+            <summary>Имя пользователя</summary>
+        </member>
+        <member name="P:MathCore.ASP.Middleware.AuthenticationMiddleware.Password">
+            <summary>Пароль</summary>
+        </member>
+        <member name="M:MathCore.ASP.Middleware.AuthenticationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Middleware.AuthenticationMiddleware"/></summary>
+            <param name="Next">Следующий делегат в конвейере обработчиков входящего запроса</param>
+        </member>
+        <member name="M:MathCore.ASP.Middleware.AuthenticationMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>Обработка контекста входящего запроса</summary>
+            <param name="Context">Контекст запроса</param>
+            <returns>Задача обработки контекста запроса</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Identity.IdentityResultExtensions">
+            <summary>Методы-расширения для <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult"/></summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.ThrowIfNotSuccess(Microsoft.AspNetCore.Identity.IdentityResult,System.String)">
+            <summary>Сгенерировать исключение в случае неудачного результата</summary>
+            <param name="Result">Проверяемый результат</param>
+            <param name="Message">Сообщение, добавляемое в исключение</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.ToErrorString(Microsoft.AspNetCore.Identity.IdentityResult,System.String)">
+            <summary>Преобразовать результат в строку сообщений об ошибках, разделённых запятой</summary>
+            <param name="Result">Преобразуемый в строку результат</param>
+            <param name="Separator">Разделитель сообщений об ошибках</param>
+            <returns>Строка со всеми ошибками, разделённые запятой</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.ToExceptions(System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Identity.IdentityError})">
+            <summary>Преобразовать перечисление ошибок в объекты-исключения</summary>
+            <param name="Errors">Перечисление ошибок</param>
+            <returns>Перечисление <see cref="T:System.Exception"/> со строкой сообщения, содержащей строку сообщения ошибки</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.AddModelErrors(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary,Microsoft.AspNetCore.Identity.IdentityResult)">
+            <summary>Добавить ошибки в модель</summary>
+            <param name="ModelState">Состояние модели</param>
+            <param name="Result">Результат, ошибки которого надо добавить в модель</param>
+        </member>
+    </members>
+</doc>

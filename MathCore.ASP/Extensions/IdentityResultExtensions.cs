@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MathCore.Annotations;
+using MathCore.ASP.Annotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 // ReSharper disable UnusedType.Global
 // ReSharper disable MemberCanBePrivate.Global

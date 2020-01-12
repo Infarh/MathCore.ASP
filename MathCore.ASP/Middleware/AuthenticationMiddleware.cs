@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using MathCore.Annotations;
+using MathCore.ASP.Annotations;
 using Microsoft.AspNetCore.Http;
 // ReSharper disable UnusedType.Global
 // ReSharper disable ConvertToAutoPropertyWhenPossible

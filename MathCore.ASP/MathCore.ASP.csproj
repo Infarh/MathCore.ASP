@@ -6,6 +6,19 @@
     <Nullable>enable</Nullable>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MathCore.ASP.snk</AssemblyOriginatorKeyFile>
+    <Version>0.0.0</Version>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Authors>Shmachilin P.A.</Authors>
+    <Description>Инструментарий ASP.NET Core</Description>
+    <Copyright>shmachilin@gmail.com</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Infarh/MathCore.ASP</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Infarh/MathCore.ASP</RepositoryUrl>
+    <PackageTags>ASP.NET Tools</PackageTags>
+    <PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -13,7 +26,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MathCore" Version="0.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
