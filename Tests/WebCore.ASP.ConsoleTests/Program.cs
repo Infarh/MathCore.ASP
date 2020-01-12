@@ -1,13 +1,12 @@
 ﻿using System;
+// ReSharper disable ArrangeMethodOrOperatorBody
 
 namespace WebCore.ASP.ConsoleTests
 {
-    class Program
+    internal static class Program
     {
-        static void Main()
+        public static void Main()
         {
-            Console.WriteLine();
-
             Console.ReadLine();
         }
     }

@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-MathCore.ASP.WEB.Tests-286ED43F-038F-4F1F-8C7E-FA365227DA29</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
 
