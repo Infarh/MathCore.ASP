@@ -21,4 +21,4 @@ jobs:
           dotnet build Tests/MathCore.ASP.Tests/MathCore.ASP.Tests.csproj -c Debug
           
       - name: Run Tests
-        run: dotnet test Tests/MathCore.ASP.Tests/MathCore.WPF.Tests.csproj
+        run: dotnet test Tests/MathCore.ASP.Tests/MathCore.ASP.Tests.csproj
