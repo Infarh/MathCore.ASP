@@ -1,5 +1,3 @@
-using System;
-
 namespace MathCore.ASP.WEB.Tests.Models
 {
     public class ErrorViewModel
