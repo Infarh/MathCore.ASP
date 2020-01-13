@@ -6,7 +6,8 @@
     <Nullable>enable</Nullable>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MathCore.ASP.snk</AssemblyOriginatorKeyFile>
-    <Version>0.0.0</Version>
+    <Version>0.0.1</Version>
+    <PackageReleaseNotes>Добавлен Таг-хелпер активации элемента</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
@@ -18,7 +19,6 @@
     <PackageProjectUrl>https://github.com/Infarh/MathCore.ASP</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Infarh/MathCore.ASP</RepositoryUrl>
     <PackageTags>ASP.NET Tools</PackageTags>
-    <PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -30,6 +30,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
   </ItemGroup>
 
 </Project>

@@ -150,11 +150,12 @@ namespace MathCore.ASP.Annotations
     internal sealed class NotifyPropertyChangedInvocatorAttribute : Attribute
     {
         public NotifyPropertyChangedInvocatorAttribute() { }
-        public NotifyPropertyChangedInvocatorAttribute(string parameterName) => ParameterName = parameterName;
+        public NotifyPropertyChangedInvocatorAttribute(string? parameterName) => ParameterName = parameterName;
 
-        public string ParameterName { get; }
+        public string? ParameterName { get; }
     }
 
+    // ReSharper disable CommentTypo
     /// <summary>
     /// Describes dependency between method input and output
     /// </summary>
@@ -197,6 +198,7 @@ namespace MathCore.ASP.Annotations
     /// public bool TryParse(string s, out Person result)
     /// </code></item>
     /// </list></examples>
+    // ReSharper restore CommentTypo
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     internal sealed class ContractAnnotationAttribute : Attribute
     {
@@ -327,7 +329,7 @@ namespace MathCore.ASP.Annotations
     }
 
     [Flags]
-    public enum ImplicitUseKindFlags
+    internal enum ImplicitUseKindFlags
     {
         Default = Access | Assign | InstantiatedWithFixedConstructorSignature,
         /// <summary>Only entity marked with attribute considered used</summary>
@@ -349,7 +351,7 @@ namespace MathCore.ASP.Annotations
     /// or <see cref="UsedImplicitlyAttribute"/>
     /// </summary>
     [Flags]
-    public enum ImplicitUseTargetFlags
+    internal enum ImplicitUseTargetFlags
     {
         Default = Itself,
         Itself = 1,
@@ -388,15 +390,19 @@ namespace MathCore.ASP.Annotations
     /// starting from web root (~)
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public class PathReferenceAttribute : Attribute
+    internal class PathReferenceAttribute : Attribute
     {
+        /// <summary>New <see cref="PathReferenceAttribute"/></summary>
         public PathReferenceAttribute() { }
-        public PathReferenceAttribute([PathReference] string basePath) => BasePath = basePath;
 
-        [NotNull] public string BasePath { get; }
+        /// <summary>New <see cref="PathReferenceAttribute"/></summary>
+        /// <param name="basePath">Base path</param>
+        public PathReferenceAttribute([PathReference] string? basePath) => BasePath = basePath;
+
+        [NotNull] public string? BasePath { get; }
     }
 
     /// <summary>Является регулярным выражением</summary>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class RegexPatternAttribute : Attribute { }
+    internal sealed class RegexPatternAttribute : Attribute { }
 }
