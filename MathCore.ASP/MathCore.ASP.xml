@@ -1,0 +1,578 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MathCore.ASP</name>
+    </assembly>
+    <members>
+        <member name="T:MathCore.ASP.Constraints.Actions.UserAgentAttribute">
+             <summary>Проверка браузера пользователя</summary>
+             <code>
+             public class HomeController : Controller
+             {
+                 public IActionResult Index() => View();
+            
+                 [ActionName(nameof(Index)), UserAgent("Edge")]
+                 public IActionResult IndexEdge() => View();
+             } 
+             </code>
+        </member>
+        <member name="F:MathCore.ASP.Constraints.Actions.UserAgentAttribute._Name">
+            <summary>Название User-Agent</summary>
+        </member>
+        <member name="P:MathCore.ASP.Constraints.Actions.UserAgentAttribute.Order">
+            <summary>Порядок проверки == 0</summary>
+        </member>
+        <member name="M:MathCore.ASP.Constraints.Actions.UserAgentAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Constraints.Actions.UserAgentAttribute"/></summary>
+            <param name="Name">Название User-Agent</param>
+        </member>
+        <member name="M:MathCore.ASP.Constraints.Actions.UserAgentAttribute.Accept(Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext)">
+            <summary>Определение условий когда действие является корректным</summary>
+            <param name="context">Контекст проверки <see cref="T:Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext" />.</param>
+            <returns><see langword="true"/> - если действие корректно и <see langword="false"/>  - в противном случае.</returns>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.ActionParameters.MustBeInRoute">
+            <summary>Параметр обязан присутствовать в маршруте</summary>
+            <code>
+            public class ParameterModelController : Controller
+            {
+                // Будет привязан:  /ParameterModel/GetById/123
+                // НЕ БУДЕТ привязан!: /ParameterModel/GetById?id=123
+                public string GetById([MustBeInRoute]int id) => $"Привязка к id: {id}";
+            }
+            </code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.ActionParameters.MustBeInRoute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel" /></summary>
+            <param name="model">Модель параметра действия контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute">
+             <summary>Добавление описания действию</summary>
+             <code>
+             [ControllerDescription("Controller Description")]
+             public class DescriptionAttributesController : Controller
+             {
+                 public string Index() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+            
+                 [ActionDescription("Action Description")]
+                 public string UseActionDescriptionAttribute() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+             }
+             </code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute._Description">
+            <summary>Добавляемое описание</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute"/></summary>
+            <param name="Description">Добавляемое описание</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.ActionDescriptionAttribute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></summary>
+            <param name="action">Модель действия контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Actions.AddActionAttribute">
+            <summary>Добавление псевдонима действия контроллера</summary>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Actions.AddActionAttribute._Name">
+            <summary>Имя псевдонима действия</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.AddActionAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Actions.AddActionAttribute"/></summary>
+            <param name="Name">Имя псевдонима действия</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Actions.AddActionAttribute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></summary>
+            <param name="action">Модель действия контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Application.ApplicationDescription">
+            <summary>Добавление описания к приложению</summary>
+            <code>
+            services.AddMvc(opt =&gt; options.Conventions.Add(new ApplicationDescription("App description")));
+            ...
+            public class HomeController : Controller
+            {
+                public string AppDescription() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+            }
+            </code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Application.ApplicationDescription._Description">
+            <summary>Добавляемое описание</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.ApplicationDescription.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Application.ApplicationDescription"/></summary>
+            <param name="Description">Добавляемое описание</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.ApplicationDescription.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></summary>
+            <param name="application">Модель приложения <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Application.EnableApiExplorer">
+            <summary>Включение отображения информации по WebAPI, представляемого приложением</summary>
+            <code>services.AddMvc(opt =&gt; options.Conventions.Add(new EnableApiExplorer()));</code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.EnableApiExplorer.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></summary>
+            <param name="application">Модель приложения <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Application.NamespaceRouting">
+            <summary>Применение пространств имён в системе маршрутизации приложения</summary>
+            <code>
+            services.AddMvc(opt =&gt; options.Conventions.Add(new NamespaceRouting()));
+            ...
+            namespace AppModelSample.Controllers
+            {
+                public class NamespaceRoutingController : Controller
+                {
+                    // using NamespaceRouting
+                    // route: /AppModelSample/Controllers/NamespaceRouting/Index
+                    public string Index() => "This demonstrates namespace routing.";
+                }
+            }
+            </code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Application.NamespaceRouting.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></summary>
+            <param name="application">Модель приложения <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Controllers.AddAreasControllerRoute">
+            <summary>Соглашение, добавляющее к контроллеру маршрут с указанием его области исходя из имени пространства имён его класса</summary>
+            <code>services.AddMvc(opt =&gt; options.Conventions.Add(new AddAreasControllerRoute()));</code>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.AddAreasControllerRoute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></summary>
+            <param name="controller">Модель контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention">
+            <summary>Соглашение, добавляющее требование авторизации к указанной области</summary>
+            <code>services.AddMvc(opt =&gt; options.Conventions.Add(new AuthorizeAreaConvention("Admin", "AdministratorPolicy")));</code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention._Area">
+            <summary>Область, доступ к которой требует обязательной авторизации</summary>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention._Policy">
+            <summary>Имя политики авторизации, которая налагается на указанную область</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention.#ctor(System.String,System.String)">
+            <summary>Инициализация нового соглашения об авторизации для указанной области</summary>
+            <param name="Area">Область, доступ к которой требует обязательной авторизации</param>
+            <param name="Policy">Имя политики авторизации, которая налагается на указанную область</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.AuthorizeAreaConvention.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></summary>
+            <param name="controller">Модель контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute">
+            <summary>Описание контроллера</summary>
+            <code>
+            [ControllerDescription("Controller Description")]
+            public class DescriptionAttributesController : Controller
+            {
+                public string Index() => "Description: " + ControllerContext.ActionDescriptor.Properties["description"];
+            }
+            </code>
+        </member>
+        <member name="F:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute._Description">
+            <summary>Добавляемое описание</summary>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute.#ctor(System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute"/></summary>
+            <param name="Description">Добавляемое описание</param>
+        </member>
+        <member name="M:MathCore.ASP.Conventions.Controllers.ControllerDescriptionAttribute.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel)">
+            <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></summary>
+            <param name="controller">Модель контроллера <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Filters.Actions.ValidateModelAttribute">
+            <summary>Проверка корректности состояния модели</summary>
+        </member>
+        <member name="P:MathCore.ASP.Filters.Actions.ValidateModelAttribute.RedirectToController">
+            <summary>Перенаправление на контроллер (если не указано, то на текущий)</summary>
+        </member>
+        <member name="P:MathCore.ASP.Filters.Actions.ValidateModelAttribute.RedirectToAction">
+            <summary>Перенаправление на действие контроллера (если не указано, то на текущее)</summary>
+        </member>
+        <member name="P:MathCore.ASP.Filters.Actions.ValidateModelAttribute.RedirectToPage">
+            <summary>Перенаправление на страницу (если не указано, то на текущее действие контроллера)</summary>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Actions.ValidateModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:MathCore.ASP.Filters.Actions.ValidateModelAttribute.ConstructRouteValueDictionary">
+            <summary>Создать словарь с данными маршрута с именами контроллера и его действия, либо с именем страницы</summary>
+            <returns>Словарь с данными маршрута</returns>
+        </member>
+        <member name="T:MathCore.ASP.Filters.Results.AddHeaderAttribute">
+            <summary>Добавление заголовка к ответу</summary>
+        </member>
+        <member name="F:MathCore.ASP.Filters.Results.AddHeaderAttribute._Name">
+            <summary>Имя заголовка</summary>
+        </member>
+        <member name="F:MathCore.ASP.Filters.Results.AddHeaderAttribute._Value">
+            <summary>Значение заголовка</summary>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.AddHeaderAttribute.#ctor(System.String,System.String)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Filters.Results.AddHeaderAttribute"/></summary>
+            <param name="Name">Имя заголовка</param>
+            <param name="Value">Значение заголовка</param>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.AddHeaderAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:MathCore.ASP.Filters.Results.GetExecutionTimeAttribute">
+            <summary>Добавление заголовка со значением полного времени выполнения действия контроллера</summary>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.GetExecutionTimeAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)">
+            <summary>Вызывается до начала выполнения действия контроллера</summary>
+            <param name="context">Контекст запроса <see cref="T:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext" /></param>
+        </member>
+        <member name="M:MathCore.ASP.Filters.Results.GetExecutionTimeAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)">
+            <summary>Вызывается после получения результата действия</summary>
+            <param name="context">Контекст запроса <see cref="T:Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext" /></param>
+        </member>
+        <member name="T:MathCore.ASP.Middleware.AuthenticationMiddleware">
+            <summary>
+            Промежуточное программное обеспечение, обеспечивающее простейший вид ограничения доступа
+            по средствам проверки имени пользователя и пароля, добавляемых в заголовки запроса
+            </summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware.__FieldLength">
+            <summary>Длина имени заголовка поля авторизации</summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware._Next">
+            <summary>Следующий делегат в конвейере обработчиков входящего запроса</summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware._UserName">
+            <summary>Имя пользователя</summary>
+        </member>
+        <member name="F:MathCore.ASP.Middleware.AuthenticationMiddleware._Password">
+            <summary>Пароль</summary>
+        </member>
+        <member name="P:MathCore.ASP.Middleware.AuthenticationMiddleware.UserName">
+            <summary>Имя пользователя</summary>
+        </member>
+        <member name="P:MathCore.ASP.Middleware.AuthenticationMiddleware.Password">
+            <summary>Пароль</summary>
+        </member>
+        <member name="M:MathCore.ASP.Middleware.AuthenticationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>Инициализация нового экземпляра <see cref="T:MathCore.ASP.Middleware.AuthenticationMiddleware"/></summary>
+            <param name="Next">Следующий делегат в конвейере обработчиков входящего запроса</param>
+        </member>
+        <member name="M:MathCore.ASP.Middleware.AuthenticationMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>Обработка контекста входящего запроса</summary>
+            <param name="Context">Контекст запроса</param>
+            <returns>Задача обработки контекста запроса</returns>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.CanBeNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could be <c>null</c> sometimes,
+            so the check for <c>null</c> is necessary before its usage
+            </summary>
+            <example><code>
+            [CanBeNull] public object Test() { return null; }
+            public void UseTest() {
+              var p = Test();
+              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
+            }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.NotNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could never be <c>null</c>
+            </summary>
+            <example><code>
+            [NotNull] public object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.ItemNotNullAttribute">
+            <summary>
+            Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task
+            and Lazy classes to indicate that the value of a collection item, of the Task.Result property
+            or of the Lazy.Value property can never be null.
+            </summary>
+            <example><code>
+            public void Foo([ItemNotNull]List&lt;string&gt; books)
+            {
+              foreach (var book in books) {
+                if (book != null) // Warning: Expression is always true
+                 Console.WriteLine(book.ToUpper());
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.ItemCanBeNullAttribute">
+            <summary>
+            Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task
+            and Lazy classes to indicate that the value of a collection item, of the Task.Result property
+            or of the Lazy.Value property can be null.
+            </summary>
+            <example><code>
+            public void Foo([ItemCanBeNull]List&lt;string&gt; books)
+            {
+              foreach (var book in books)
+              {
+                // Warning: Possible 'System.NullReferenceException'
+                Console.WriteLine(book.ToUpper());
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.StringFormatMethodAttribute">
+            <summary>
+            Indicates that the marked method builds string by format pattern and (optional) arguments.
+            Parameter, which contains format string, should be given in constructor. The format string
+            should be in <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object[])"/>-like form
+            </summary>
+            <example><code>
+            [StringFormatMethod("message")]
+            public void ShowError(string message, params object[] args) { /* do something */ }
+            public void Foo() {
+              ShowError("Failed: {0}"); // Warning: Non-existing argument in format string
+            }
+            </code></example>
+        </member>
+        <member name="M:MathCore.ASP.Annotations.StringFormatMethodAttribute.#ctor(System.String)">
+            <param name="formatParameterName">
+            Specifies which parameter of an annotated method should be treated as format-string
+            </param>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.InvokerParameterNameAttribute">
+            <summary>
+            Indicates that the function argument should be string literal and match one
+            of the parameters of the caller function. For example, ReSharper annotates
+            the parameter of <see cref="T:System.ArgumentNullException"/>
+            </summary>
+            <example><code>
+            public void Foo(string param) {
+              if (param == null)
+                throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
+            }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.NotifyPropertyChangedInvocatorAttribute">
+             <summary>
+             Indicates that the method is contained in a type that implements
+             <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface
+             and this method is used to notify that some property value changed
+             </summary>
+             <remarks>
+             The method should be non-static and conform to one of the supported signatures:
+             <list>
+             <item><c>NotifyChanged(string)</c></item>
+             <item><c>NotifyChanged(params string[])</c></item>
+             <item><c>NotifyChanged{T}(Expression{Func{T}})</c></item>
+             <item><c>NotifyChanged{T,U}(Expression{Func{T,U}})</c></item>
+             <item><c>SetProperty{T}(ref T, T, string)</c></item>
+             </list>
+             </remarks>
+             <example><code>
+             public class Foo : INotifyPropertyChanged {
+               public event PropertyChangedEventHandler PropertyChanged;
+               [NotifyPropertyChangedInvocator]
+               protected virtual void NotifyChanged(string propertyName) { ... }
+            
+               private string _name;
+               public string Name {
+                 get { return _name; }
+                 set { _name = value; NotifyChanged("LastName"); /* Warning */ }
+               }
+             }
+             </code>
+             Examples of generated notifications:
+             <list>
+             <item><c>NotifyChanged("Property")</c></item>
+             <item><c>NotifyChanged(() =&gt; Property)</c></item>
+             <item><c>NotifyChanged((VM x) =&gt; x.Property)</c></item>
+             <item><c>SetProperty(ref myField, value, "Property")</c></item>
+             </list>
+             </example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.ContractAnnotationAttribute">
+            <summary>
+            Describes dependency between method input and output
+            </summary>
+            <syntax>
+            <p>Function Definition Table syntax:</p>
+            <list>
+            <item>FDT      ::= FDTRow [;FDTRow]*</item>
+            <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
+            <item>Input    ::= ParameterName: Value [, Input]*</item>
+            <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
+            <item>Value    ::= true | false | null | notnull | canbenull</item>
+            </list>
+            If method has single input parameter, it's name could be omitted.<br/>
+            Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)
+            for method output means that the methos doesn't return normally.<br/>
+            <c>canbenull</c> annotation is only applicable for output parameters.<br/>
+            You can use multiple <c>[ContractAnnotation]</c> for each FDT row,
+            or use single attribute with rows separated by semicolon.<br/>
+            </syntax>
+            <examples><list>
+            <item><code>
+            [ContractAnnotation("=> halt")]
+            public void TerminationMethod()
+            </code></item>
+            <item><code>
+            [ContractAnnotation("halt &lt;= condition: false")]
+            public void Assert(bool condition, string text) // regular assertion method
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null => true")]
+            public bool IsNullOrEmpty(string s) // string.IsNullOrEmpty()
+            </code></item>
+            <item><code>
+            // A method that returns null if the parameter is null, and not null if the parameter is not null
+            [ContractAnnotation("null => null; notnull => notnull")]
+            public object Transform(object data) 
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null=>false; =>true,result:notnull; =>false, result:null")]
+            public bool TryParse(string s, out Person result)
+            </code></item>
+            </list></examples>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.LocalizationRequiredAttribute">
+            <summary>
+            Indicates that marked element should be localized or not
+            </summary>
+            <example><code>
+            [LocalizationRequiredAttribute(true)]
+            public class Foo {
+              private string str = "my string"; // Warning: Localizable string
+            }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.CannotApplyEqualityOperatorAttribute">
+            <summary>
+            Indicates that the value of the marked type (or its derivatives)
+            cannot be compared using '==' or '!=' operators and <c>Equals()</c>
+            should be used instead. However, using '==' or '!=' for comparison
+            with <c>null</c> is always permitted.
+            </summary>
+            <example><code>
+            [CannotApplyEqualityOperator]
+            class NoEquality { }
+            class UsesNoEquality {
+              public void Test() {
+                var ca1 = new NoEquality();
+                var ca2 = new NoEquality();
+                if (ca1 != null) { // OK
+                  bool condition = ca1 == ca2; // Warning
+                }
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.BaseTypeRequiredAttribute">
+            <summary>
+            When applied to a target attribute, specifies a requirement for any type marked
+            with the target attribute to implement or inherit specific type or types.
+            </summary>
+            <example><code>
+            [BaseTypeRequired(typeof(IComponent)] // Specify requirement
+            public class ComponentAttribute : Attribute { }
+            [Component] // ComponentAttribute requires implementing IComponent interface
+            public class MyComponent : IComponent { }
+            </code></example>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.UsedImplicitlyAttribute">
+            <summary>
+            Indicates that the marked symbol is used implicitly
+            (e.g. via reflection, in external library), so this symbol
+            will not be marked as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.MeansImplicitUseAttribute">
+            <summary>
+            Should be used on attributes and causes ReSharper
+            to not mark symbols marked with such attributes as unused
+            (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="F:MathCore.ASP.Annotations.ImplicitUseKindFlags.Access">
+            <summary>Only entity marked with attribute considered used</summary>
+        </member>
+        <member name="F:MathCore.ASP.Annotations.ImplicitUseKindFlags.Assign">
+            <summary>Indicates implicit assignment to a member</summary>
+        </member>
+        <member name="F:MathCore.ASP.Annotations.ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature">
+            <summary>
+            Indicates implicit instantiation of a type with fixed constructor signature.
+            That means any unused constructor parameters won't be reported as such.
+            </summary>
+        </member>
+        <member name="F:MathCore.ASP.Annotations.ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature">
+            <summary>Indicates implicit instantiation of a type</summary>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.ImplicitUseTargetFlags">
+            <summary>
+            Specify what is considered used implicitly
+            when marked with <see cref="T:MathCore.ASP.Annotations.MeansImplicitUseAttribute"/>
+            or <see cref="T:MathCore.ASP.Annotations.UsedImplicitlyAttribute"/>
+            </summary>
+        </member>
+        <member name="F:MathCore.ASP.Annotations.ImplicitUseTargetFlags.Members">
+            <summary>Members of entity marked with attribute are considered used</summary>
+        </member>
+        <member name="F:MathCore.ASP.Annotations.ImplicitUseTargetFlags.WithMembers">
+            <summary>Entity marked with attribute and all its members considered used</summary>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.PublicAPIAttribute">
+            <summary>
+            This attribute is intended to mark publicly available API
+            which should not be removed and so is treated as used
+            </summary>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.InstantHandleAttribute">
+            <summary>
+            Tells code analysis engine if the parameter is completely handled
+            when the invoked method is on stack. If the parameter is a delegate,
+            indicates that delegate is executed while the method is executed.
+            If the parameter is an enumerable, indicates that it is enumerated
+            while the method is executed
+            </summary>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.PathReferenceAttribute">
+            <summary>
+            Indicates that a parameter is a path to a file or a folder
+            within a web project. Path can be relative or absolute,
+            starting from web root (~)
+            </summary>
+        </member>
+        <member name="M:MathCore.ASP.Annotations.PathReferenceAttribute.#ctor">
+            <summary>New <see cref="T:MathCore.ASP.Annotations.PathReferenceAttribute"/></summary>
+        </member>
+        <member name="M:MathCore.ASP.Annotations.PathReferenceAttribute.#ctor(System.String)">
+            <summary>New <see cref="T:MathCore.ASP.Annotations.PathReferenceAttribute"/></summary>
+            <param name="basePath">Base path</param>
+        </member>
+        <member name="T:MathCore.ASP.Annotations.RegexPatternAttribute">
+            <summary>Является регулярным выражением</summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Identity.IdentityResultExtensions">
+            <summary>Методы-расширения для <see cref="T:Microsoft.AspNetCore.Identity.IdentityResult"/></summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.ThrowIfNotSuccess(Microsoft.AspNetCore.Identity.IdentityResult,System.String)">
+            <summary>Сгенерировать исключение в случае неудачного результата</summary>
+            <param name="Result">Проверяемый результат</param>
+            <param name="Message">Сообщение, добавляемое в исключение</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.ToErrorString(Microsoft.AspNetCore.Identity.IdentityResult,System.String)">
+            <summary>Преобразовать результат в строку сообщений об ошибках, разделённых запятой</summary>
+            <param name="Result">Преобразуемый в строку результат</param>
+            <param name="Separator">Разделитель сообщений об ошибках</param>
+            <returns>Строка со всеми ошибками, разделённые запятой</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.ToExceptions(System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Identity.IdentityError})">
+            <summary>Преобразовать перечисление ошибок в объекты-исключения</summary>
+            <param name="Errors">Перечисление ошибок</param>
+            <returns>Перечисление <see cref="T:System.Exception"/> со строкой сообщения, содержащей строку сообщения ошибки</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Identity.IdentityResultExtensions.AddModelErrors(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary,Microsoft.AspNetCore.Identity.IdentityResult)">
+            <summary>Добавить ошибки в модель</summary>
+            <param name="ModelState">Состояние модели</param>
+            <param name="Result">Результат, ошибки которого надо добавить в модель</param>
+        </member>
+    </members>
+</doc>

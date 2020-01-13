@@ -21,6 +21,8 @@ namespace MathCore.ASP.Conventions.Application
     /// </code>
     public class NamespaceRouting : IApplicationModelConvention
     {
+        /// <summary>Вызывается для применения соглашения к <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></summary>
+        /// <param name="application">Модель приложения <see cref="T:Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel" /></param>
         public void Apply(ApplicationModel application)
         {
             foreach (var controller in application.Controllers)

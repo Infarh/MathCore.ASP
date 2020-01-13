@@ -1,4 +1,4 @@
-﻿using MathCore.Annotations;
+﻿using MathCore.ASP.Annotations;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 // ReSharper disable UnusedType.Global
 

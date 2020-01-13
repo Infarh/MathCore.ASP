@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using MathCore.Annotations;
+using MathCore.ASP.Annotations;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 // ReSharper disable UnusedType.Global
 
