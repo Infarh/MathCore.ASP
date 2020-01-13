@@ -368,10 +368,14 @@ namespace MathCore.ASP.Annotations
     [MeansImplicitUse]
     internal sealed class PublicAPIAttribute : Attribute
     {
+        /// <summary>Initializing new instance of <see cref="PublicAPIAttribute"/></summary>
         public PublicAPIAttribute() { }
+
+        /// <summary>Initializing new instance of <see cref="PublicAPIAttribute"/></summary>
         public PublicAPIAttribute([NotNull] string comment) => Comment = comment;
 
-        [NotNull] public string Comment { get; }
+        /// <summary>Comment</summary>
+        [NotNull] public string? Comment { get; }
     }
 
     /// <summary>
