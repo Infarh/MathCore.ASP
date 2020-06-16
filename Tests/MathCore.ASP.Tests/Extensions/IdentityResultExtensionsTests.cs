@@ -29,8 +29,9 @@ namespace MathCore.ASP.Tests.Extensions
                .Where(exception => exception.InnerExceptions).Check(Errors => Errors
                    .Where(errors => errors.Count).Check(count => count.IsEqual(expected_errors_count))
                    .WhereItems(errors => errors).Check(errors => errors
-                       .All((error, i) => error
-                           .Where(e => e.Message).IsEqual($"Code {i + 1}:Description {i + 1}"))));
+                       .AllItems((error, i) => error
+                           .Where(e => e.Message).IsEqual($"Code {i + 1}:Description {i + 1}")))
+                );
         }
 
         [TestMethod, Ignore]
