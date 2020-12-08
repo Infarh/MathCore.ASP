@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathCore.ASP", "MathCore.ASP\MathCore.ASP.csproj", "{0E7D0A53-E949-4D96-A3DD-7B64F2015A68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathCore.ASP", "MathCore.ASP\MathCore.ASP.csproj", "{0E7D0A53-E949-4D96-A3DD-7B64F2015A68}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{558A9EE4-FF04-49C0-A299-C6243247B3E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathCore.ASP.Tests", "Tests\MathCore.ASP.Tests\MathCore.ASP.Tests.csproj", "{2EC10481-D2EA-4BBF-AB73-1A7874F18B54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathCore.ASP.Tests", "Tests\MathCore.ASP.Tests\MathCore.ASP.Tests.csproj", "{2EC10481-D2EA-4BBF-AB73-1A7874F18B54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathCore.ASP.WEB.Tests", "Tests\MathCore.ASP.WEB.Tests\MathCore.ASP.WEB.Tests.csproj", "{5722EC26-BBE7-4ED8-A994-902F3F36E1F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathCore.ASP.WEB.Tests", "Tests\MathCore.ASP.WEB.Tests\MathCore.ASP.WEB.Tests.csproj", "{5722EC26-BBE7-4ED8-A994-902F3F36E1F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCore.ASP.ConsoleTests", "Tests\WebCore.ASP.ConsoleTests\WebCore.ASP.ConsoleTests.csproj", "{EF9A480D-8349-437C-B832-17667A122E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCore.ASP.ConsoleTests", "Tests\WebCore.ASP.ConsoleTests\WebCore.ASP.ConsoleTests.csproj", "{EF9A480D-8349-437C-B832-17667A122E03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61EDD106-738B-4194-83FC-EAF2863BFE56}"
 	ProjectSection(SolutionItems) = preProject
