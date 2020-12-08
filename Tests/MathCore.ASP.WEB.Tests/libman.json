@@ -3,11 +3,11 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "jquery@3.5.1",
+      "library": "jquery@3.3.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
-      "library": "jquery-validate@1.19.2",
+      "library": "jquery-validate@1.17.0",
       "destination": "wwwroot/lib/jquery-validate/",
       "files": [
         "jquery.validate.min.js",
@@ -23,7 +23,7 @@
       "destination": "wwwroot/lib/jquery-ajax-unobtrusive/"
     },
     {
-      "library": "twitter-bootstrap@4.5.3",
+      "library": "twitter-bootstrap@4.3.1",
       "destination": "wwwroot/lib/bootstrap/"
     }
   ]
