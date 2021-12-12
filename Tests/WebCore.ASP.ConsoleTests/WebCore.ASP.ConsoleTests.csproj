@@ -2,12 +2,18 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>8</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Simple.OData.Client" Version="5.26.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\MathCore.ASP\MathCore.ASP.csproj" />
+    <ProjectReference Include="..\MathCore.ASP.WEB.Tests\MathCore.ASP.WEB.Tests.csproj" />
   </ItemGroup>
 
 </Project>

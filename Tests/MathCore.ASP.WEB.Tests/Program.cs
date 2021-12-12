@@ -9,7 +9,7 @@ namespace MathCore.ASP.WEB.Tests
 
         public static IHostBuilder CreateWebHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHost(host => host.UseStartup<Startup>())
+                .ConfigureWebHostDefaults(host => host.UseStartup<Startup>())
                 ;
     }
 }

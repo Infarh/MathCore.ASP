@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using System.Text.Json;
+
+using MathCore.ASP.Filters.Results;
+using MathCore.ASP.Middleware;
+using MathCore.ASP.WEB.Tests.Models;
+
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
+
+using Newtonsoft.Json;
 
 namespace MathCore.ASP.WEB.Tests
 {
@@ -10,7 +15,19 @@ namespace MathCore.ASP.WEB.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddAutoMapper(typeof(Startup));
+
+            services
+               .AddControllersWithViews(opt => opt.Filters.Add(new ProcessingTimeHeaderAttribute("P-Processing")))
+               .AddNewtonsoftJson(opt => opt.SerializerSettings.Formatting = Formatting.Indented)
+               .AddJsonOptions(opt =>
+                {
+                    opt.JsonSerializerOptions.WriteIndented = true;
+                    opt.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; 
+                })
+               .AddRazorRuntimeCompilation();
+
+            //services.AddOData();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -26,14 +43,31 @@ namespace MathCore.ASP.WEB.Tests
             }
 
             app.UseStaticFiles();
+            
 
             app.UseAuthentication();
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => endpoints
-               .MapDefaultControllerRoute()
-            );
+            app.UseMiddleware<ProcessingTimeHeaderMiddleware>();
+            app.UseEndpoints(endpoints =>
+            {
+                //endpoints.EnableDependencyInjection();
+                //endpoints.Expand().Select().OrderBy().MaxTop(null).Count().Filter();
+                //endpoints.MapODataRoute("OData", "odata", CreateODataModel());
+                
+                
+                endpoints.MapDefaultControllerRoute();
+            });
+        }
+
+        private IEdmModel CreateODataModel()
+        {
+            var builder = new ODataConventionModelBuilder();
+            builder.EntitySet<Student>("students").EntityType
+               .Select().OrderBy().Expand().Count().Filter();
+
+            return builder.GetEdmModel();
         }
     }
 }
