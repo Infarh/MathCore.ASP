@@ -12,6 +12,8 @@ namespace MathCore.ASP.Filters.Results
     {
         private readonly Stopwatch _Timer = new Stopwatch();
 
+        public string HeaderName { get; set; } = "ElapsedTime";
+
         /// <summary>Вызывается до начала выполнения действия контроллера</summary>
         /// <param name="context">Контекст запроса <see cref="T:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext" /></param>
         public void OnResultExecuting(ResultExecutingContext context) => _Timer.Start();
@@ -22,7 +24,7 @@ namespace MathCore.ASP.Filters.Results
         {
             _Timer.Stop();
             var process_time = _Timer.Elapsed.TotalMilliseconds;
-            context.HttpContext.Response.Headers.Add("ElapsedTime", process_time.ToString(CultureInfo.InvariantCulture));
+            context.HttpContext.Response.Headers.Add(HeaderName, process_time.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/MathCore.ASP/MathCore.ASP.xml
+**/wwwroot/lib

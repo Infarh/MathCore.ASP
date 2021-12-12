@@ -2,12 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>8</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MathCore.ASP.snk</AssemblyOriginatorKeyFile>
-    <Version>0.0.1</Version>
-    <PackageReleaseNotes>Добавлен Таг-хелпер активации элемента</PackageReleaseNotes>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Version>0.0.2</Version>
+    <PackageReleaseNotes>Обновление платформы</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
@@ -17,7 +21,7 @@
     <Copyright>shmachilin@gmail.com</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Infarh/MathCore.ASP</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Infarh/MathCore.ASP</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Infarh/MathCore.ASP.git</RepositoryUrl>
     <PackageTags>ASP.NET Tools</PackageTags>
   </PropertyGroup>
 
@@ -26,11 +30,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
+
 
 </Project>
