@@ -1,0 +1,39 @@
+name: Testing
+
+on: [push, pull_request]
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  
+jobs:
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+
+    - name: Cache NuGet  
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget
+
+    - name: Building
+      run: |
+        dotnet build MathCore.ASP/MathCore.ASP.csproj -c debug
+        dotnet build Tests/MathCore.ASP.Tests/MathCore.ASP.Tests.csproj -c debug
+
+    - name: Run Tests
+      run: dotnet test Tests/MathCore.ASP.Tests/MathCore.ASP.Tests.csproj -c debug -v q --no-build
